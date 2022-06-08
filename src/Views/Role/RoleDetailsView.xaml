@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="AppFramework.Views.RoleDetailsView"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:extensions="clr-namespace:AppFramework.Extensions.MarkupExtensions">
+    <Grid Padding="15" RowDefinitions="auto,*,auto">
+        <StackLayout>
+            <Label Text="{extensions:Translate RoleName}" />
+
+            <Entry Text="{Binding Role.DisplayName, Mode=TwoWay}" />
+
+            <StackLayout Orientation="Horizontal">
+                <Label Text="{extensions:Translate Default}" />
+                <Switch IsToggled="{Binding Role.IsDefault, Mode=TwoWay}" />
+            </StackLayout>
+
+            <Label Text="{extensions:Translate DefaultRole_Description}" />
+        </StackLayout>
+
+        <StackLayout Grid.Row="1">
+            <Label Text="{extensions:Translate Permission}" />
+
+            <!--<TreeView
+                AutoExpandMode="AllNodesExpanded"
+                CheckBoxMode="Recursive"
+                CheckedItems="{Binding treesService.SelectedItems}"
+                ChildPropertyName="Items"
+                ExpandActionTarget="Node"
+                IsAnimationEnabled="True"
+                ItemTemplateContextType="Node"
+                ItemsSource="{Binding treesService.Permissions}"
+                NodePopulationMode="Instant"
+                SelectionBackgroundColor="Transparent">
+                <TreeView.ItemTemplate>
+                    <DataTemplate>
+                        <StackLayout Orientation="Horizontal">
+                            <CheckBox IsChecked="{Binding IsChecked, Mode=TwoWay}" VerticalOptions="Center" />
+                            <Label Text="{Binding DisplayName}" VerticalOptions="Center" />
+                        </StackLayout>
+                    </DataTemplate>
+                </TreeView.ItemTemplate>
+            </TreeView>-->
+        </StackLayout>
+
+        <StackLayout Grid.Row="2">
+            <Button
+                Command="{Binding GoBackCommand}"
+                HorizontalOptions="Fill"
+                Text="{extensions:Translate Cancel}" />
+
+            <Button
+                Command="{Binding SaveCommand}"
+                CommandParameter="Save"
+                HorizontalOptions="Fill"
+                Text="{extensions:Translate Save}" />
+        </StackLayout>
+    </Grid>
+</ContentPage>

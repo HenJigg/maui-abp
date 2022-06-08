@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView
+    x:Class="AppFramework.Views.MainView"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:behaviors="clr-namespace:AppFramework.Behaviors"
+    xmlns:manager="clr-namespace:AppFramework;assembly=AppFramework"
+    xmlns:prism="http://prismlibrary.com"
+    BackgroundColor="{DynamicResource GrayShadowBackgroundColor}">
+    <Grid ColumnDefinitions="200,*" RowDefinitions="auto,*">
+        <Border
+            Grid.Row="1"
+            Margin="0,-2,0,0"
+            BackgroundColor="{DynamicResource Gray-900}"
+            Opacity="0.02" />
+
+        <Border
+            Grid.ColumnSpan="2"
+            BackgroundColor="{DynamicResource Gray-900}"
+            Opacity="0.05" />
+        <StackLayout
+            Grid.ColumnSpan="2"
+            Margin="20,25"
+            HorizontalOptions="Start"
+            Orientation="Horizontal">
+            <Image
+                HeightRequest="20"
+                Source="logo.ico"
+                WidthRequest="20" />
+            <Label
+                Margin="5,0,2,0"
+                FontAttributes="Bold"
+                Text="APP"
+                TextColor="{DynamicResource PrimaryColor}" />
+            <Label Text="FRAMEWORK" />
+        </StackLayout>
+        <CollectionView
+            x:Name="collection"
+            Grid.Row="1"
+            Margin="10"
+            ItemsSource="{Binding appService.NavigationItems}"
+            SelectionMode="Single">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Grid Padding="5" ColumnDefinitions="auto,*">
+                        <Border
+                            x:Name="border"
+                            HorizontalOptions="Start"
+                            WidthRequest="5" />
+                        <Label
+                            Margin="10,0"
+                            Style="{StaticResource IconLabelStyle}"
+                            Text="{Binding Icon}" />
+                        <Label
+                            Grid.Column="1"
+                            Text="{Binding Title}"
+                            VerticalOptions="Center" />
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup Name="CommonStates">
+                                <VisualState Name="Normal">
+                                    <VisualState.Setters>
+                                        <Setter TargetName="border" Property="Border.BackgroundColor" Value="Transparent" />
+                                    </VisualState.Setters>
+                                </VisualState>
+                                <VisualState Name="Selected">
+                                    <VisualState.Setters>
+                                        <Setter TargetName="border" Property="Border.BackgroundColor" Value="{DynamicResource PrimaryColor}" />
+                                    </VisualState.Setters>
+                                </VisualState>
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
+                    </Grid>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+
+            <CollectionView.Behaviors>
+                <behaviors:EventHandlerBehavior EventName="SelectionChanged">
+                    <behaviors:ActionCollection>
+                        <behaviors:InvokeCommandAction Command="{Binding NavigateCommand}" CommandParameter="{Binding Path=SelectedItem, Source={x:Reference collection}}" />
+                    </behaviors:ActionCollection>
+                </behaviors:EventHandlerBehavior>
+            </CollectionView.Behaviors>
+        </CollectionView>
+        <ContentView
+            Grid.Row="1"
+            Grid.Column="1"
+            prism:RegionManager.RegionName="{x:Static manager:AppRegionManager.Main}" />
+    </Grid>
+</ContentView>

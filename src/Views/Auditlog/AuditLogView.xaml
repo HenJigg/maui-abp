@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView
+    x:Class="AppFramework.Views.AuditLogView"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+    <Grid>
+        <CollectionView ItemsSource="{Binding GridModelList}">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Grid>
+                        <Frame HorizontalOptions="FillAndExpand">
+                            <Grid RowDefinitions="auto,auto,auto">
+                                <StackLayout Orientation="Horizontal">
+                                    <Label Style="{StaticResource IconLabelStyle}" Text="{StaticResource API}" />
+
+                                    <!--<Label   Text="{Binding ServiceName}" />-->
+                                    <Label Margin="5,0" Text="{Binding MethodName}" />
+                                    <Border Padding="5,2" HorizontalOptions="End">
+                                        <Label Text="{Binding ExecutionDuration, StringFormat='{0}ms'}" />
+                                    </Border>
+                                </StackLayout>
+
+                                <StackLayout Grid.Row="1" Orientation="Horizontal">
+                                    <Label Style="{StaticResource IconLabelStyle}" Text="{StaticResource WebBrowser}" />
+                                    <!--<Label   Text="{Binding BrowserInfo}" />-->
+                                    <Label Margin="5,0" Text="{Binding ClientIpAddress}" />
+                                </StackLayout>
+
+                                <StackLayout
+                                    Grid.Row="2"
+                                    Margin="0,2,0,0"
+                                    Orientation="Horizontal">
+                                    <Label Style="{StaticResource IconLabelStyle}" Text="{StaticResource Interval}" />
+                                    <Label Margin="5,0" Text="{Binding ExecutionTime}" />
+                                    <Label Text="{Binding UserName}" />
+                                </StackLayout>
+                            </Grid>
+                        </Frame>
+                    </Grid>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </Grid>
+</ContentView>

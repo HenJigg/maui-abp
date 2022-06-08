@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="AppFramework.Views.AddUsersView"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:extensions="clr-namespace:AppFramework.Extensions.MarkupExtensions"
+    Title="AddUsersView">
+    <Grid RowDefinitions="auto,*,auto" RowSpacing="4">
+        <SearchBar Placeholder="{extensions:Translate SearchWithThreeDot}" />
+
+        <ListView Grid.Row="1" ItemsSource="{Binding Values}">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <StackLayout Orientation="Horizontal">
+                        <CheckBox IsChecked="{Binding IsSelected}" />
+                        <Label Text="{Binding Value.Name}" VerticalOptions="Center" />
+                    </StackLayout>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+
+        <StackLayout Grid.Row="2">
+            <Button
+                Command="{Binding GoBackCommand}"
+                HorizontalOptions="Fill"
+                Text="{extensions:Translate Cancel}" />
+            <Button
+                Command="{Binding SaveCommand}"
+                HorizontalOptions="Fill"
+                Text="{extensions:Translate Save}" />
+        </StackLayout>
+    </Grid>
+</ContentPage>

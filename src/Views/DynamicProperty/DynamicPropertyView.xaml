@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView
+    x:Class="AppFramework.Views.DynamicPropertyView"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:extensions="clr-namespace:AppFramework.Extensions.MarkupExtensions;assembly=AppFramework"
+    xmlns:perm="clr-namespace:AppFramework;assembly=AppFramework">
+    <Grid>
+        <CollectionView ItemsSource="{Binding GridModelList}">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Grid>
+                        <Frame HorizontalOptions="FillAndExpand">
+                            <Grid RowDefinitions="auto,auto" RowSpacing="2">
+                                <StackLayout Orientation="Horizontal">
+                                    <Label Text="{extensions:Translate DisplayName}" />
+                                    <Label
+                                        Margin="5,0"
+                                        Text="{Binding DisplayName}"
+                                        VerticalOptions="Center" />
+                                </StackLayout>
+                                <StackLayout
+                                    Grid.Row="1"
+                                    Margin="0,5,0,0"
+                                    Orientation="Horizontal">
+                                    <Label Text="{extensions:Translate PropertyName}" />
+                                    <Label Margin="5,0" Text="{Binding PropertyName}" />
+                                </StackLayout>
+                            </Grid>
+                        </Frame>
+                    </Grid>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+
+        <Button
+            Margin="0,0,10,10"
+            Command="{Binding AddCommand}"
+            HorizontalOptions="End"
+            IsVisible="{extensions:HasPermission Text={x:Static perm:Permkeys.DynamicEntityPropertiesCreate}}"
+            Style="{StaticResource AddButtonStyle}" />
+    </Grid>
+</ContentView>

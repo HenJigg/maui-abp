@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="AppFramework.Views.TenantDetailsView"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:extensions="clr-namespace:AppFramework.Extensions.MarkupExtensions;assembly=AppFramework">
+    <ScrollView>
+        <StackLayout Padding="15">
+            <!--  租户名称  -->
+            <Label Text="{extensions:Translate TenancyName}" />
+
+            <Entry IsEnabled="{Binding IsNewTenant}" Text="{Binding Model.TenancyName}" />
+
+            <!--  姓名  -->
+            <Label Text="{extensions:Translate Name}" />
+            <Entry Text="{Binding Model.Name}" />
+
+            <!--  使用主机数据库  -->
+            <StackLayout IsVisible="{Binding IsNewTenant}" Orientation="Horizontal">
+                <Label Text="{extensions:Translate UseHostDatabase}" />
+                <Switch HorizontalOptions="EndAndExpand" IsToggled="{Binding UseHostDatabase}" />
+            </StackLayout>
+
+            <!--  连接字符串  -->
+            <StackLayout IsVisible="{Binding UseHostDatabase, Converter={StaticResource InverseBooleanConverter}}">
+                <Label Text="{extensions:Translate DatabaseConnectionString}" />
+                <Entry Text="{Binding Model.ConnectionString}" />
+
+                <!--  连接字符串更改警告  -->
+                <StackLayout
+                    HorizontalOptions="FillAndExpand"
+                    IsVisible="{Binding IsNewTenant, Converter={StaticResource InverseBooleanConverter}}"
+                    Orientation="Horizontal"
+                    Spacing="0">
+
+                    <Label
+                        Margin="5"
+                        HorizontalOptions="StartAndExpand"
+                        MinimumWidthRequest="15"
+                        Text="fas-info-circle"
+                        VerticalOptions="StartAndExpand" />
+
+                    <Label
+                        Margin="5"
+                        Text="{extensions:Translate TenantDatabaseConnectionStringChangeWarningMessage}"
+                        VerticalOptions="CenterAndExpand" />
+                </StackLayout>
+            </StackLayout>
+
+            <StackLayout IsVisible="{Binding IsNewTenant}">
+                <!--  管理员邮箱  -->
+                <Label Text="{extensions:Translate AdminEmailAddress}" />
+                <Entry Text="{Binding Model.AdminEmailAddress}" />
+
+                <!--  设置随机密码  -->
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="{extensions:Translate SetRandomPassword}" />
+                    <Switch HorizontalOptions="EndAndExpand" IsToggled="{Binding IsSetRandomPassword}" />
+                </StackLayout>
+
+                <StackLayout IsVisible="{Binding IsSetRandomPassword, Converter={StaticResource InverseBooleanConverter}}" Orientation="Vertical">
+
+                    <!--  管理员密码  -->
+                    <Label Style="{StaticResource SimpleLabelStyle}" Text="{extensions:Translate AdminPassword}" />
+                    <Entry IsPassword="True" Text="{Binding AdminPassword}" />
+
+                    <!--  管理员密码重复  -->
+                    <Label Text="{extensions:Translate AdminPasswordRepeat}" />
+                    <Entry
+                        IsPassword="True"
+                        Style="{StaticResource BorderlessEntryStyle}"
+                        Text="{Binding AdminPasswordRepeat}" />
+                </StackLayout>
+            </StackLayout>
+
+            <Label Text="{extensions:Translate Edition}" />
+            <Picker
+                Title="{extensions:Translate Edition}"
+                ItemDisplayBinding="{Binding DisplayText}"
+                ItemsSource="{Binding Editions}"
+                SelectedItem="{Binding SelectedEdition}" />
+
+            <StackLayout IsVisible="{Binding IsSubscriptionFieldVisible}" Orientation="Vertical">
+
+                <!--  无限时间订阅  -->
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="{extensions:Translate UnlimitedTimeSubscription}" />
+                    <Switch HorizontalOptions="EndAndExpand" IsToggled="{Binding IsUnlimitedTimeSubscription}" />
+                </StackLayout>
+
+                <!--  选择到期时间  -->
+                <DatePicker
+                    Format="{extensions:Translate DateFormatShort}"
+                    HorizontalOptions="FillAndExpand"
+                    IsVisible="{Binding IsUnlimitedTimeSubscription, Converter={StaticResource InverseBooleanConverter}}"
+                    MinimumDate="{Binding Today}" />
+
+                <!--  试用期  -->
+                <StackLayout IsVisible="{Binding IsUnlimitedTimeSubscription, Converter={StaticResource InverseBooleanConverter}}" Orientation="Horizontal">
+                    <Label Text="{extensions:Translate IsInTrialPeriod}" />
+                    <Switch HorizontalOptions="EndAndExpand" IsToggled="{Binding Model.IsInTrialPeriod}" />
+                </StackLayout>
+
+                <StackLayout IsVisible="{Binding IsSelectedEditionFree}" Orientation="Horizontal">
+                    <Label
+                        Margin="10,10,0,10"
+                        Text="fas-info-circle"
+                        TextColor="{StaticResource TextMutedColor}" />
+                    <Label
+                        Margin="5"
+                        HorizontalTextAlignment="Start"
+                        Text="{extensions:Translate FreeEditionsCannotHaveTrialVersions}"
+                        VerticalOptions="Center" />
+                </StackLayout>
+
+                <!--  下一次登录修改密码？  -->
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="{extensions:Translate ShouldChangePasswordOnNextLogin}" />
+                    <Switch HorizontalOptions="EndAndExpand" IsToggled="{Binding Model.ShouldChangePasswordOnNextLogin}" />
+                </StackLayout>
+
+                <!--  发送激活邮件  -->
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="{extensions:Translate EmailActivation}" />
+                    <Switch HorizontalOptions="EndAndExpand" IsToggled="{Binding Model.SendActivationEmail}" />
+                </StackLayout>
+
+                <!--  是否激活  -->
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="{extensions:Translate Active}" />
+                    <Switch HorizontalOptions="EndAndExpand" IsToggled="{Binding Model.IsActive}" />
+                </StackLayout>
+            </StackLayout>
+
+            <!--  取消按钮  -->
+            <Button
+                Command="{Binding GoBackCommand}"
+                HorizontalOptions="Fill"
+                Text="{extensions:Translate Cancel}" />
+
+            <!--  删除按钮  -->
+            <Button
+                Command="{Binding DeleteTenantCommand}"
+                HorizontalOptions="Fill"
+                IsVisible="{Binding IsDeleteButtonVisible}"
+                Text="{extensions:Translate Delete}" />
+
+            <!--  保存按钮  -->
+            <Button
+                Command="{Binding SaveTenantCommand}"
+                HorizontalOptions="Fill"
+                Text="{extensions:Translate Save}" />
+        </StackLayout>
+    </ScrollView>
+</ContentPage>

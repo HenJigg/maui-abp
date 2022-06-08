@@ -1,0 +1,121 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ResourceDictionary
+    x:Class="AppFramework.Themes.DarkTheme"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:styles="clr-namespace:AppFramework.Themes.Styles">
+    <ResourceDictionary.MergedDictionaries>
+        <styles:IconFonts />
+        <styles:LabelStyle />
+        <styles:ButtonStyle />
+        <styles:BorderStyle />
+    </ResourceDictionary.MergedDictionaries>
+
+    <Style x:Key="IconLabelStyle" TargetType="Label">
+        <Setter Property="TextColor" Value="{DynamicResource Gray-900}" />
+        <Setter Property="FontSize" Value="18" />
+        <Setter Property="HorizontalOptions" Value="Center" />
+        <Setter Property="VerticalOptions" Value="Center" />
+        <Setter Property="HorizontalTextAlignment" Value="Center" />
+        <Setter Property="FontFamily" Value="iconfont" />
+    </Style>
+
+    <Style TargetType="Frame">
+        <Setter Property="Margin" Value="5" />
+        <Setter Property="CornerRadius" Value="5" />
+        <Setter Property="HasShadow" Value="True" />
+        <Setter Property="BorderColor" Value="Transparent" />
+        <Setter Property="CornerRadius" Value="8" />
+        <Setter Property="BackgroundColor" Value="{DynamicResource GrayShadowColor}" />
+    </Style>
+
+    <Style TargetType="DatePicker">
+        <Setter Property="TextColor" Value="{DynamicResource Gray-900}" />
+        <Setter Property="BackgroundColor" Value="Transparent" />
+        <Setter Property="FontFamily" Value="OpenSansRegular" />
+        <Setter Property="FontSize" Value="14" />
+        <Setter Property="VisualStateManager.VisualStateGroups">
+            <VisualStateGroupList>
+                <VisualStateGroup x:Name="CommonStates">
+                    <VisualState x:Name="Normal" />
+                    <VisualState x:Name="Disabled">
+                        <VisualState.Setters>
+                            <Setter Property="TextColor" Value="{DynamicResource Gray-900}" />
+                        </VisualState.Setters>
+                    </VisualState>
+                </VisualStateGroup>
+            </VisualStateGroupList>
+        </Setter>
+    </Style>
+
+    <Style TargetType="Entry">
+        <Setter Property="TextColor" Value="{DynamicResource Gray-900}" />
+        <Setter Property="BackgroundColor" Value="Transparent" />
+        <Setter Property="FontFamily" Value="OpenSansRegular" />
+        <Setter Property="FontSize" Value="14" />
+        <Setter Property="PlaceholderColor" Value="{DynamicResource Gray-900}" />
+        <Setter Property="VisualStateManager.VisualStateGroups">
+            <VisualStateGroupList>
+                <VisualStateGroup x:Name="CommonStates">
+                    <VisualState x:Name="Normal" />
+                    <VisualState x:Name="Disabled">
+                        <VisualState.Setters>
+                            <Setter Property="TextColor" Value="{DynamicResource Gray-900}" />
+                        </VisualState.Setters>
+                    </VisualState>
+                </VisualStateGroup>
+            </VisualStateGroupList>
+        </Setter>
+    </Style>
+
+    <Style TargetType="SearchBar">
+        <Setter Property="TextColor" Value="{DynamicResource Gray-900}" />
+        <Setter Property="PlaceholderColor" Value="{DynamicResource Gray-900}" />
+        <Setter Property="CancelButtonColor" Value="{DynamicResource Gray-900}" />
+        <Setter Property="BackgroundColor" Value="{DynamicResource GrayShadowColor}" />
+        <Setter Property="FontFamily" Value="OpenSansRegular" />
+        <Setter Property="FontSize" Value="14" />
+        <Setter Property="VisualStateManager.VisualStateGroups">
+            <VisualStateGroupList>
+                <VisualStateGroup x:Name="CommonStates">
+                    <VisualState x:Name="Normal" />
+                    <VisualState x:Name="Disabled">
+                        <VisualState.Setters>
+                            <Setter Property="TextColor" Value="{DynamicResource Gray-900}" />
+                            <Setter Property="PlaceholderColor" Value="{DynamicResource Gray-900}" />
+                        </VisualState.Setters>
+                    </VisualState>
+                </VisualStateGroup>
+            </VisualStateGroupList>
+        </Setter>
+    </Style>
+
+    <Color x:Key="PrimaryColor">#3E94FF</Color>
+    <Color x:Key="PrimaryDarkColor">#2A89FF</Color>
+    <Color x:Key="PrimaryDarkenColor">#0B78FF</Color>
+    <Color x:Key="PrimaryLighterColor">#71B0FF</Color>
+    <Color x:Key="PrimaryGradient">#3E65FF</Color>
+    <Color x:Key="PrimaryLight">#A4CDFF</Color>
+    <Color x:Key="SecondaryGradient">#9683FC</Color>
+    <Color x:Key="Secondary">#9683FC</Color>
+    <Color x:Key="Green">#7ED321</Color>
+    <Color x:Key="Red">#FF4A4A</Color>
+    <Color x:Key="Orange">#FF844A</Color>
+    <Color x:Key="Blue">#4ACAFF</Color>
+    <Color x:Key="HyperLink">#3EAFFF</Color>
+
+    <Color x:Key="Gray-100">#333942</Color>
+    <Color x:Key="Gray-200">#454D59</Color>
+    <Color x:Key="Gray-300">#57616F</Color>
+    <Color x:Key="Gray-400">#656F81</Color>
+    <Color x:Key="Gray-500">#737E91</Color>
+    <Color x:Key="Gray-600">#848E9F</Color>
+    <Color x:Key="Gray-700">#9BA3B1</Color>
+    <Color x:Key="Gray-800">#BDC3CB</Color>
+    <Color x:Key="Gray-900">#EBEDEF</Color>
+    <Color x:Key="Gray-Bg">#2F343C</Color>
+    <Color x:Key="Gray-Black">#000000</Color>
+    <Color x:Key="Gray-White">#ffffff</Color>
+    <Color x:Key="GrayShadowColor">#333942</Color>
+    <Color x:Key="GrayShadowBackgroundColor">#2F343C</Color>
+</ResourceDictionary>

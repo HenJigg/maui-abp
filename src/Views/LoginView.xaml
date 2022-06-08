@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView
+    x:Class="AppFramework.Views.LoginView"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:extensions="clr-namespace:AppFramework.Extensions.MarkupExtensions"
+    BackgroundColor="{DynamicResource GrayShadowBackgroundColor}">
+    <Grid ColumnDefinitions="*,0.8*">
+
+        <Image Margin="70" Source="background2.png" />
+
+        <Frame
+            Grid.Column="1"
+            Padding="30"
+            HasShadow="True"
+            HorizontalOptions="Start"
+            VerticalOptions="CenterAndExpand">
+            <Grid RowDefinitions="auto,auto" WidthRequest="{OnIdiom Phone=300, Default=380}">
+                <StackLayout IsVisible="{Binding IsMultiTenancyEnabled}">
+                    <Grid ColumnSpacing="5" HorizontalOptions="Center">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="0.5*" />
+                            <ColumnDefinition Width="0.5*" />
+                        </Grid.ColumnDefinitions>
+
+                        <Label Text="{extensions:Translate CurrentTenant}" />
+
+                        <Label Grid.Column="1" Text="{Binding CurrentTenancyNameOrDefault}" />
+                    </Grid>
+                </StackLayout>
+                <StackLayout Grid.Row="1">
+                    <Label
+                        FontSize="20"
+                        HorizontalOptions="Center"
+                        Text="AppFramework" />
+                    <Entry
+                        Margin="0,10"
+                        Placeholder="{extensions:Translate UserNameOrEmail}"
+                        Text="{Binding UserName, Mode=TwoWay}" />
+
+                    <Entry
+                        IsPassword="True"
+                        Placeholder="{extensions:Translate Password}"
+                        Text="{Binding Password, Mode=TwoWay}" />
+
+                    <Button
+                        Margin="0,10,0,5"
+                        Command="{Binding ExecuteCommand}"
+                        CommandParameter="LoginUser"
+                        HorizontalOptions="Fill"
+                        IsEnabled="{Binding IsLoginEnabled}"
+                        Text="{extensions:Translate LogIn}" />
+
+                    <StackLayout Orientation="Horizontal">
+                        <Label HorizontalOptions="Start" Text="{extensions:Translate ForgotPassword}" />
+
+                        <Label HorizontalOptions="EndAndExpand" Text="{extensions:Translate EmailActivation}" />
+                    </StackLayout>
+
+                    <Picker
+                        Margin="0,10,0,0"
+                        HorizontalOptions="Fill"
+                        ItemDisplayBinding="{Binding DisplayName}"
+                        ItemsSource="{Binding Languages}"
+                        SelectedItem="{Binding SelectedLanguage}" />
+                </StackLayout>
+            </Grid>
+        </Frame>
+
+        <Label
+            Grid.ColumnSpan="2"
+            Margin="15"
+            HorizontalOptions="Center"
+            Text="MAUI 6.0312"
+            VerticalOptions="End" />
+    </Grid>
+</ContentView>

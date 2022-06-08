@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView
+    x:Class="AppFramework.Views.LanguageView"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:extensions="clr-namespace:AppFramework.Extensions.MarkupExtensions"
+    xmlns:perm="clr-namespace:AppFramework;assembly=AppFramework">
+    <Grid>
+        <CollectionView ItemsSource="{Binding GridModelList}">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Grid>
+                        <Frame HorizontalOptions="FillAndExpand">
+                            <StackLayout Orientation="Horizontal">
+                                <Image
+                                    HeightRequest="25"
+                                    HorizontalOptions="Center"
+                                    Source="{Binding Icon, Converter={StaticResource ImageSourceConverter}}"
+                                    VerticalOptions="Center"
+                                    WidthRequest="25" />
+
+                                <StackLayout Margin="10,0" HorizontalOptions="Start">
+                                    <Label Text="{Binding DisplayName}" TextColor="{DynamicResource Gray-700}" />
+                                    <Label Text="{Binding Name}" TextColor="{DynamicResource Gray-700}" />
+                                </StackLayout>
+                            </StackLayout>
+                        </Frame>
+                    </Grid>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+
+        <Button
+            Margin="0,0,10,10"
+            Command="{Binding AddCommand}"
+            HorizontalOptions="End"
+            IsVisible="{extensions:HasPermission Text={x:Static perm:Permkeys.LanguageCreate}}"
+            Style="{StaticResource AddButtonStyle}"
+            VerticalOptions="End" />
+    </Grid>
+</ContentView>

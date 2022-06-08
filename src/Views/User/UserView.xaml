@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView
+    x:Class="AppFramework.Views.UserView"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:extensions="clr-namespace:AppFramework.Extensions.MarkupExtensions"
+    xmlns:perm="clr-namespace:AppFramework;assembly=AppFramework">
+    <Grid RowDefinitions="auto,*">
+        <SearchBar
+            Margin="20,10"
+            Placeholder="{extensions:Translate SearchWithThreeDot}"
+            Text="{Binding FilterText}" />
+
+        <CollectionView
+            Grid.Row="1"
+            Margin="15,5"
+            ItemsSource="{Binding GridModelList}">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Grid>
+                        <Frame HorizontalOptions="FillAndExpand">
+                            <Grid RowDefinitions="auto,auto,auto">
+                                <StackLayout Orientation="Horizontal">
+                                    <!--<toolkit:AvatarView
+                                                HeightRequest="30"
+                                                HorizontalOptions="Start"
+                                                Text="{Binding Converter={StaticResource UserPhotoConverter}}"
+                                                VerticalOptions="Center"
+                                                WidthRequest="30" />-->
+                                    <Label FontSize="16" Text="{Binding UserName}" />
+                                </StackLayout>
+
+                                <StackLayout
+                                    Grid.Row="1"
+                                    Margin="0,3"
+                                    Orientation="Horizontal">
+                                    <Label Style="{StaticResource IconLabelStyle}" Text="&#xe7dc;" />
+                                    <Label Margin="5,0" Text="{Binding EmailAddress}" />
+                                    <Label
+                                        Margin="15,0,5,0"
+                                        Style="{StaticResource IconLabelStyle}"
+                                        Text="&#xe601;" />
+                                    <Label Text="{Binding PhoneNumber}" />
+                                </StackLayout>
+                            </Grid>
+                        </Frame>
+                    </Grid>
+
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+
+        <Button
+            Grid.Row="1"
+            Margin="0,0,10,10"
+            Command="{Binding AddCommand}"
+            HorizontalOptions="End"
+            IsVisible="{extensions:HasPermission Text={x:Static perm:Permkeys.UserCreate}}"
+            Style="{StaticResource AddButtonStyle}"
+            VerticalOptions="End" />
+    </Grid>
+</ContentView>

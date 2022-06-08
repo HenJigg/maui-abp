@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<prism:PrismApplication
+    x:Class="AppFramework.App"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:converters="clr-namespace:AppFramework.Converters;assembly=AppFramework"
+    xmlns:local="clr-namespace:AppFramework"
+    xmlns:prism="http://prismlibrary.com">
+    <Application.Resources>
+        <ResourceDictionary>
+            <converters:UserPhotoConverter x:Key="UserPhotoConverter" />
+            <converters:DatetimeConverter x:Key="DatetimeConverter" />
+            <converters:InverseBooleanConverter x:Key="InverseBooleanConverter" />
+            <converters:BoolToYesNoConverter x:Key="BoolToYesNoConverter" />
+            <converters:ImageSourceConverter x:Key="ImageSourceConverter" />
+            <converters:ByteToImageConverter x:Key="ByteToImageConverter" />
+            <converters:BackgroundColorConverter x:Key="BackgroundColorConverter" />
+            <converters:IndentConverter x:Key="IndentConverter" />
+            <converters:HexToColorConverter x:Key="HexToColorConverter" />
+        </ResourceDictionary>
+    </Application.Resources>
+</prism:PrismApplication>

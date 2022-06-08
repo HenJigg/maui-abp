@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ResourceDictionary
+    x:Class="AppFramework.Themes.Styles.ButtonStyle"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+    <Style x:Key="AddButtonStyle" TargetType="Button">
+        <Setter Property="TextColor" Value="White" />
+        <Setter Property="BackgroundColor" Value="{DynamicResource PrimaryColor}" />
+        <Setter Property="BorderWidth" Value="0" />
+        <Setter Property="Margin" Value="20" />
+        <Setter Property="CornerRadius" Value="30" />
+        <Setter Property="FontSize" Value="20" />
+        <Setter Property="WidthRequest" Value="50" />
+        <Setter Property="HeightRequest" Value="50" />
+        <Setter Property="HorizontalOptions" Value="End" />
+        <Setter Property="Text" Value="&#xe607;" />
+        <Setter Property="FontFamily" Value="iconfont" />
+        <Setter Property="VerticalOptions" Value="End" />
+    </Style>
+</ResourceDictionary>

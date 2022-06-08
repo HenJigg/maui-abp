@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView
+    x:Class="AppFramework.Views.DashboardView"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:extensions="clr-namespace:AppFramework.Extensions.MarkupExtensions">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+
+        <StackLayout Margin="20" Orientation="Horizontal">
+            <Label
+                FontAttributes="Bold"
+                FontSize="18"
+                Text="{extensions:Translate Dashboard}" />
+            <Label
+                Margin="10,0,0,0"
+                Text="{extensions:Translate DashboardHeaderInfo}"
+                VerticalOptions="Center" />
+        </StackLayout>
+
+        <CollectionView Grid.Row="1" ItemsSource="{Binding TopDashBoards, Mode=TwoWay}">
+            <CollectionView.ItemsLayout>
+                <GridItemsLayout Orientation="Vertical" Span="4" />
+            </CollectionView.ItemsLayout>
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Grid>
+                        <Frame x:Name="frame" BorderColor="Transparent">
+                            <Frame.Background>
+                                <LinearGradientBrush>
+                                    <GradientStop Offset="0.0" Color="{Binding BindingContext.BackgroundGradientStart, Source={x:Reference frame}, Converter={StaticResource HexToColorConverter}}" />
+                                    <GradientStop Offset="1.0" Color="{Binding BindingContext.BackgroundGradientEnd, Source={x:Reference frame}, Converter={StaticResource HexToColorConverter}}" />
+                                </LinearGradientBrush>
+                            </Frame.Background>
+                            <StackLayout>
+                                <Label
+                                    FontFamily="Montserrat-SemiBold"
+                                    FontSize="12"
+                                    Text="{Binding Title}"
+                                    TextColor="{DynamicResource Gray-White}" />
+                                <Label
+                                    FontFamily="Montserrat-SemiBold"
+                                    FontSize="32"
+                                    Text="{Binding Amount}"
+                                    TextColor="{DynamicResource Gray-White}" />
+                            </StackLayout>
+                        </Frame>
+
+                        <Image
+                            Margin="15"
+                            HeightRequest="40"
+                            HorizontalOptions="End"
+                            Source="{Binding Logo}"
+                            VerticalOptions="Center"
+                            WidthRequest="40" />
+                    </Grid>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+
+        <Grid
+            Grid.Row="2"
+            ColumnDefinitions="*,*"
+            RowDefinitions="*,*">
+            <Frame Margin="5,0,5,5">
+                <Grid RowDefinitions="auto,*">
+                    <StackLayout Orientation="Horizontal">
+                        <Label
+                            FontSize="30"
+                            Style="{StaticResource IconLabelStyle}"
+                            Text="&#xe656;" />
+                        <Label Text="{extensions:Translate IncomeStatistics}" VerticalOptions="Center" />
+                    </StackLayout>
+
+                    <!--<StackLayout
+                        HorizontalOptions="End"
+                        Orientation="Horizontal"
+                        VerticalOptions="Center">
+                        <RadioButton Content="{mark:Translate Daily}" IsChecked="{Binding IsDaily}" />
+                        <RadioButton Content="{mark:Translate Weekly}" IsChecked="{Binding IsWeekly}" />
+                        <RadioButton Content="{mark:Translate Monthly}" IsChecked="{Binding IsMonthly}" />
+                    </StackLayout>-->
+                </Grid>
+            </Frame>
+
+            <Frame Grid.Column="1" Margin="5,0,5,5">
+                <Grid RowDefinitions="auto,*">
+                    <StackLayout Orientation="Horizontal">
+                        <Label
+                            FontSize="30"
+                            Style="{StaticResource IconLabelStyle}"
+                            Text="&#xe664;" />
+                        <Label Text="{extensions:Translate EditionStatistics}" VerticalOptions="Center" />
+                        <Label
+                            Margin="5,0"
+                            Text="{Binding TimeInterval}"
+                            VerticalOptions="Center" />
+                    </StackLayout>
+                </Grid>
+            </Frame>
+
+            <Frame Grid.Row="1" Margin="5">
+                <Grid RowDefinitions="auto,*">
+                    <StackLayout Orientation="Horizontal">
+                        <Label
+                            FontSize="30"
+                            Style="{StaticResource IconLabelStyle}"
+                            Text="&#xe602;" />
+                        <Label Text="{extensions:Translate SubscriptionExpiringTenants}" />
+                    </StackLayout>
+
+                    <Label
+                        Margin="0,0,10,0"
+                        HorizontalOptions="End"
+                        Text="{extensions:Translate SeeAllRecords}"
+                        VerticalOptions="Center" />
+                </Grid>
+            </Frame>
+
+            <Frame
+                Grid.Row="1"
+                Grid.Column="1"
+                Margin="5">
+                <Grid RowDefinitions="auto,*">
+                    <StackLayout Orientation="Horizontal">
+                        <Label
+                            FontSize="30"
+                            Style="{StaticResource IconLabelStyle}"
+                            Text="&#xe602;" />
+                        <Label Text="{extensions:Translate RecentTenants}" />
+                    </StackLayout>
+
+                    <Label
+                        Margin="0,0,10,0"
+                        HorizontalOptions="End"
+                        Text="{extensions:Translate SeeAllRecords}"
+                        VerticalOptions="Center" />
+                </Grid>
+            </Frame>
+        </Grid>
+    </Grid>
+</ContentView>

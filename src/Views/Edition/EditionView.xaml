@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView
+    x:Class="AppFramework.Views.EditionView"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:extensions="clr-namespace:AppFramework.Extensions.MarkupExtensions;assembly=AppFramework"
+    xmlns:perm="clr-namespace:AppFramework;assembly=AppFramework">
+    <Grid>
+        <CollectionView ItemsSource="{Binding GridModelList}" SelectionMode="Single">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Grid>
+                        <Frame HorizontalOptions="FillAndExpand">
+                            <Grid
+                                Padding="5"
+                                ColumnDefinitions="auto,0.8*"
+                                HorizontalOptions="FillAndExpand"
+                                RowDefinitions="0.3*,0.3*,0.3*"
+                                RowSpacing="2"
+                                VerticalOptions="FillAndExpand">
+                                <Label Text="{extensions:Translate EditionName}" />
+                                <Label
+                                    Grid.Row="0"
+                                    Grid.Column="1"
+                                    Text="{Binding DisplayName}" />
+
+                                <Label
+                                    Grid.Row="1"
+                                    Grid.Column="0"
+                                    Text="{extensions:Translate Price}" />
+                                <Label
+                                    Grid.Row="1"
+                                    Grid.Column="1"
+                                    Text="{Binding DailyPrice}" />
+
+                                <Label
+                                    Grid.Row="2"
+                                    Grid.Column="0"
+                                    Text="{extensions:Translate IsTrialActive}" />
+                                <Label
+                                    Grid.Row="2"
+                                    Grid.Column="1"
+                                    Text="{Binding TrialDayCount}" />
+                            </Grid>
+                        </Frame>
+                    </Grid>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+
+        <Button
+            Margin="0,0,10,10"
+            Command="{Binding AddCommand}"
+            HorizontalOptions="End"
+            IsVisible="{extensions:HasPermission Text={x:Static perm:Permkeys.EditionCreate}}"
+            Style="{StaticResource AddButtonStyle}"
+            VerticalOptions="End" />
+    </Grid>
+</ContentView>

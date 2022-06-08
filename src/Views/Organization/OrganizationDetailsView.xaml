@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="AppFramework.Views.OrganizationDetailsView"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:extensions="clr-namespace:AppFramework.Extensions.MarkupExtensions"
+    Title="OrganizationDetailsView">
+    <Grid Padding="15" RowDefinitions="auto,*,auto">
+
+        <StackLayout>
+            <Label Text="{extensions:Translate OrganizationUnits}" />
+            <Entry Text="{Binding OrganizationUnit.DisplayName, Mode=TwoWay}" />
+        </StackLayout>
+
+        <StackLayout Grid.Row="1" IsEnabled="{Binding NewOrganizationIsVisible}">
+            <ListView x:Name="ListUsersView" ItemsSource="{Binding UserModelList}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <SwipeView BackgroundColor="{DynamicResource Gray-Bg}">
+                            <SwipeView.RightItems>
+                                <SwipeItems>
+                                    <SwipeItem
+                                        BackgroundColor="{DynamicResource Red}"
+                                        Command="{Binding Path=BindingContext.DeleteUserCommand, Source={x:Reference ListUsersView}}"
+                                        CommandParameter="{Binding}"
+                                        Text="{extensions:Translate Remove}" />
+                                </SwipeItems>
+                            </SwipeView.RightItems>
+
+                            <Grid Padding="10" RowSpacing="2">
+                                <Label Text="{Binding UserName}" VerticalOptions="Center" />
+                            </Grid>
+                        </SwipeView>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+
+            <ListView x:Name="ListRolesView" ItemsSource="{Binding RolesModelList}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <SwipeView BackgroundColor="{DynamicResource Gray-Bg}">
+                            <SwipeView.RightItems>
+                                <SwipeItems>
+                                    <SwipeItem
+                                        BackgroundColor="{DynamicResource Red}"
+                                        Command="{Binding Path=BindingContext.DeleteRoleCommand, Source={x:Reference ListRolesView}}"
+                                        CommandParameter="{Binding}"
+                                        Text="{extensions:Translate Remove}" />
+                                </SwipeItems>
+                            </SwipeView.RightItems>
+
+                            <Grid Padding="10" RowSpacing="2">
+                                <Label Text="{Binding DisplayName}" VerticalOptions="Center" />
+                            </Grid>
+                        </SwipeView>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
+
+        <StackLayout Grid.Row="2">
+            <Button
+                Command="{Binding GoBackCommand}"
+                HorizontalOptions="Fill"
+                Text="{extensions:Translate Cancel}" />
+            <Button
+                Command="{Binding AddUsersCommand}"
+                HorizontalOptions="Fill"
+                IsVisible="{Binding NewOrganizationIsVisible}"
+                Text="{extensions:Translate AddMember}" />
+            <Button
+                Command="{Binding AddRolesCommand}"
+                HorizontalOptions="Fill"
+                IsVisible="{Binding NewOrganizationIsVisible}"
+                Text="{extensions:Translate AddRole}" />
+            <Button
+                Command="{Binding SaveCommand}"
+                HorizontalOptions="Fill"
+                Text="{extensions:Translate Save}" />
+        </StackLayout>
+    </Grid>
+</ContentPage>

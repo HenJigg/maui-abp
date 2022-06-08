@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView
+    x:Class="AppFramework.Views.OrganizationView"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:extensions="clr-namespace:AppFramework.Extensions.MarkupExtensions">
+    <Grid>
+        <!--<TreeView
+                x:Name="SfTreeView"
+                BackgroundColor="{DynamicResource GrayShadowColor}"
+                ChildPropertyName="Items"
+                ExpandActionTarget="Node"
+                FocusBorderThickness="0"
+                FullRowSelect="True"
+                ItemHeight="55"
+                ItemsSource="{Binding GridModelList}"
+                SelectionBackgroundColor="Transparent">
+                <TreeView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <SwipeView BackgroundColor="Transparent">
+                                <SwipeView.RightItems>
+                                    <SwipeItems>
+                                        <SwipeItem
+                                            BackgroundColor="{DynamicResource Red}"
+                                            Command="{Binding Path=BindingContext.DeleteCommand, Source={x:Reference SfTreeView}}"
+                                            CommandParameter="{Binding}"
+                                            Text="{extensions:Translate Remove}" />
+                                        <SwipeItem
+                                            BackgroundColor="{DynamicResource PrimaryColor}"
+                                            Command="{Binding Path=BindingContext.EditCommand, Source={x:Reference SfTreeView}}"
+                                            CommandParameter="{Binding}"
+                                            Text="{extensions:Translate Edit}" />
+                                        <SwipeItem
+                                            BackgroundColor="{DynamicResource PrimaryColor}"
+                                            Command="{Binding Path=BindingContext.AddSubUnitCommand, Source={x:Reference SfTreeView}}"
+                                            CommandParameter="{Binding}"
+                                            Text="{extensions:Translate AddSubUnit}" />
+                                    </SwipeItems>
+                                </SwipeView.RightItems>
+
+                                <StackLayout Padding="5,10" Orientation="Horizontal">
+                                    <Label Text="&#xe66e;" VerticalOptions="Center" />
+                                    <Label Margin="5,0,0,0" Text="{Binding DisplayName}" />
+
+                                    <Button
+                                        Command="{Binding Path=BindingContext.EditCommand, Source={x:Reference SfTreeView}}"
+                                        CommandParameter="{Binding}"
+                                        Text="{Binding MemberCount}" />
+                                    <Label Style="{StaticResource SimpleLabelStyle}" Text="{extensions:Translate Members}" />
+
+                                    <Button
+                                        Command="{Binding Path=BindingContext.EditCommand, Source={x:Reference SfTreeView}}"
+                                        CommandParameter="{Binding}"
+                                        Text="{Binding RoleCount}" />
+                                    <Label Text="{extensions:Translate Roles}" />
+                                </StackLayout>
+                            </SwipeView>
+                        </ViewCell>
+                    </DataTemplate>
+                </TreeView.ItemTemplate>
+            </TreeView>-->
+
+        <!--<Button
+            Margin="0,0,10,10"
+            Command="{Binding AddCommand}"
+            VerticalOptions="End" />-->
+    </Grid>
+</ContentView>

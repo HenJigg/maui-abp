@@ -1,0 +1,700 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFrameworks>net6.0-android;net6.0-ios;net6.0-maccatalyst</TargetFrameworks>
+		<TargetFrameworks Condition="$([MSBuild]::IsOSPlatform('windows'))">$(TargetFrameworks);net6.0-windows10.0.19041.0</TargetFrameworks>
+		<!-- Uncomment to also build the tizen app. You will need to install tizen by following this: https://github.com/Samsung/Tizen.NET -->
+		<!-- <TargetFrameworks>$(TargetFrameworks);net6.0-tizen</TargetFrameworks> -->
+		<OutputType>Exe</OutputType>
+		<RootNamespace>AppFramework</RootNamespace>
+		<UseMaui>true</UseMaui>
+		<SingleProject>true</SingleProject>
+		<ImplicitUsings>enable</ImplicitUsings>
+
+		<!-- Display name -->
+		<ApplicationTitle>AppFramework</ApplicationTitle>
+
+		<!-- App Identifier -->
+		<ApplicationId>com.companyname.appframework</ApplicationId>
+		<ApplicationIdGuid>CCC22DC9-4B96-43EC-9F02-4156B2D47095</ApplicationIdGuid>
+
+		<!-- Versions -->
+		<ApplicationDisplayVersion>1.0</ApplicationDisplayVersion>
+		<ApplicationVersion>1</ApplicationVersion>
+
+    <!-- Required for C# Hot Reload -->
+    <UseInterpreter Condition="'$(Configuration)' == 'Debug'">True</UseInterpreter>
+
+		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'ios'">14.2</SupportedOSPlatformVersion>
+		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'maccatalyst'">14.0</SupportedOSPlatformVersion>
+		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'android'">21.0</SupportedOSPlatformVersion>
+		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.17763.0</SupportedOSPlatformVersion>
+		<TargetPlatformMinVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.17763.0</TargetPlatformMinVersion>
+		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'tizen'">6.5</SupportedOSPlatformVersion>
+  </PropertyGroup>
+
+	<ItemGroup>
+		<!-- App Icon -->
+		<MauiIcon Include="Resources\AppIcon\appicon.svg" ForegroundFile="Resources\AppIcon\appiconfg.svg" Color="#512BD4" />
+		<MauiImage Include="Resources\Images\flags\ad.png" />
+		<MauiImage Include="Resources\Images\flags\ae.png" />
+		<MauiImage Include="Resources\Images\flags\af.png" />
+		<MauiImage Include="Resources\Images\flags\ag.png" />
+		<MauiImage Include="Resources\Images\flags\ai.png" />
+		<MauiImage Include="Resources\Images\flags\al.png" />
+		<MauiImage Include="Resources\Images\flags\am.png" />
+		<MauiImage Include="Resources\Images\flags\an.png" />
+		<MauiImage Include="Resources\Images\flags\ao.png" />
+		<MauiImage Include="Resources\Images\flags\ar.png" />
+		<MauiImage Include="Resources\Images\flags\as.png" />
+		<MauiImage Include="Resources\Images\flags\at.png" />
+		<MauiImage Include="Resources\Images\flags\au.png" />
+		<MauiImage Include="Resources\Images\flags\aw.png" />
+		<MauiImage Include="Resources\Images\flags\ax.png" />
+		<MauiImage Include="Resources\Images\flags\az.png" />
+		<MauiImage Include="Resources\Images\flags\ba.png" />
+		<MauiImage Include="Resources\Images\flags\bb.png" />
+		<MauiImage Include="Resources\Images\flags\bd.png" />
+		<MauiImage Include="Resources\Images\flags\be.png" />
+		<MauiImage Include="Resources\Images\flags\bf.png" />
+		<MauiImage Include="Resources\Images\flags\bg.png" />
+		<MauiImage Include="Resources\Images\flags\bh.png" />
+		<MauiImage Include="Resources\Images\flags\bi.png" />
+		<MauiImage Include="Resources\Images\flags\bj.png" />
+		<MauiImage Include="Resources\Images\flags\bm.png" />
+		<MauiImage Include="Resources\Images\flags\bn.png" />
+		<MauiImage Include="Resources\Images\flags\bo.png" />
+		<MauiImage Include="Resources\Images\flags\br.png" />
+		<MauiImage Include="Resources\Images\flags\bs.png" />
+		<MauiImage Include="Resources\Images\flags\bt.png" />
+		<MauiImage Include="Resources\Images\flags\bv.png" />
+		<MauiImage Include="Resources\Images\flags\bw.png" />
+		<MauiImage Include="Resources\Images\flags\by.png" />
+		<MauiImage Include="Resources\Images\flags\bz.png" />
+		<MauiImage Include="Resources\Images\flags\ca.png" />
+		<MauiImage Include="Resources\Images\flags\catalonia.png" />
+		<MauiImage Include="Resources\Images\flags\cc.png" />
+		<MauiImage Include="Resources\Images\flags\cd.png" />
+		<MauiImage Include="Resources\Images\flags\cf.png" />
+		<MauiImage Include="Resources\Images\flags\cg.png" />
+		<MauiImage Include="Resources\Images\flags\ch.png" />
+		<MauiImage Include="Resources\Images\flags\ci.png" />
+		<MauiImage Include="Resources\Images\flags\ck.png" />
+		<MauiImage Include="Resources\Images\flags\cl.png" />
+		<MauiImage Include="Resources\Images\flags\cm.png" />
+		<MauiImage Include="Resources\Images\flags\cn.png" />
+		<MauiImage Include="Resources\Images\flags\co.png" />
+		<MauiImage Include="Resources\Images\flags\cr.png" />
+		<MauiImage Include="Resources\Images\flags\cs.png" />
+		<MauiImage Include="Resources\Images\flags\cu.png" />
+		<MauiImage Include="Resources\Images\flags\cv.png" />
+		<MauiImage Include="Resources\Images\flags\cx.png" />
+		<MauiImage Include="Resources\Images\flags\cy.png" />
+		<MauiImage Include="Resources\Images\flags\cz.png" />
+		<MauiImage Include="Resources\Images\flags\de.png" />
+		<MauiImage Include="Resources\Images\flags\dj.png" />
+		<MauiImage Include="Resources\Images\flags\dk.png" />
+		<MauiImage Include="Resources\Images\flags\dm.png" />
+		<MauiImage Include="Resources\Images\flags\do.png" />
+		<MauiImage Include="Resources\Images\flags\dz.png" />
+		<MauiImage Include="Resources\Images\flags\ec.png" />
+		<MauiImage Include="Resources\Images\flags\ee.png" />
+		<MauiImage Include="Resources\Images\flags\eg.png" />
+		<MauiImage Include="Resources\Images\flags\eh.png" />
+		<MauiImage Include="Resources\Images\flags\england.png" />
+		<MauiImage Include="Resources\Images\flags\er.png" />
+		<MauiImage Include="Resources\Images\flags\es.png" />
+		<MauiImage Include="Resources\Images\flags\et.png" />
+		<MauiImage Include="Resources\Images\flags\europeanunion.png" />
+		<MauiImage Include="Resources\Images\flags\fam.png" />
+		<MauiImage Include="Resources\Images\flags\fi.png" />
+		<MauiImage Include="Resources\Images\flags\fj.png" />
+		<MauiImage Include="Resources\Images\flags\fk.png" />
+		<MauiImage Include="Resources\Images\flags\fm.png" />
+		<MauiImage Include="Resources\Images\flags\fo.png" />
+		<MauiImage Include="Resources\Images\flags\fr.png" />
+		<MauiImage Include="Resources\Images\flags\ga.png" />
+		<MauiImage Include="Resources\Images\flags\gb.png" />
+		<MauiImage Include="Resources\Images\flags\gd.png" />
+		<MauiImage Include="Resources\Images\flags\ge.png" />
+		<MauiImage Include="Resources\Images\flags\gf.png" />
+		<MauiImage Include="Resources\Images\flags\gh.png" />
+		<MauiImage Include="Resources\Images\flags\gi.png" />
+		<MauiImage Include="Resources\Images\flags\gl.png" />
+		<MauiImage Include="Resources\Images\flags\gm.png" />
+		<MauiImage Include="Resources\Images\flags\gn.png" />
+		<MauiImage Include="Resources\Images\flags\gp.png" />
+		<MauiImage Include="Resources\Images\flags\gq.png" />
+		<MauiImage Include="Resources\Images\flags\gr.png" />
+		<MauiImage Include="Resources\Images\flags\gs.png" />
+		<MauiImage Include="Resources\Images\flags\gt.png" />
+		<MauiImage Include="Resources\Images\flags\gu.png" />
+		<MauiImage Include="Resources\Images\flags\gw.png" />
+		<MauiImage Include="Resources\Images\flags\gy.png" />
+		<MauiImage Include="Resources\Images\flags\hk.png" />
+		<MauiImage Include="Resources\Images\flags\hm.png" />
+		<MauiImage Include="Resources\Images\flags\hn.png" />
+		<MauiImage Include="Resources\Images\flags\hr.png" />
+		<MauiImage Include="Resources\Images\flags\ht.png" />
+		<MauiImage Include="Resources\Images\flags\hu.png" />
+		<MauiImage Include="Resources\Images\flags\id.png" />
+		<MauiImage Include="Resources\Images\flags\ie.png" />
+		<MauiImage Include="Resources\Images\flags\il.png" />
+		<MauiImage Include="Resources\Images\flags\in.png" />
+		<MauiImage Include="Resources\Images\flags\io.png" />
+		<MauiImage Include="Resources\Images\flags\iq.png" />
+		<MauiImage Include="Resources\Images\flags\ir.png" />
+		<MauiImage Include="Resources\Images\flags\is.png" />
+		<MauiImage Include="Resources\Images\flags\it.png" />
+		<MauiImage Include="Resources\Images\flags\jm.png" />
+		<MauiImage Include="Resources\Images\flags\jo.png" />
+		<MauiImage Include="Resources\Images\flags\jp.png" />
+		<MauiImage Include="Resources\Images\flags\ke.png" />
+		<MauiImage Include="Resources\Images\flags\kg.png" />
+		<MauiImage Include="Resources\Images\flags\kh.png" />
+		<MauiImage Include="Resources\Images\flags\ki.png" />
+		<MauiImage Include="Resources\Images\flags\km.png" />
+		<MauiImage Include="Resources\Images\flags\kn.png" />
+		<MauiImage Include="Resources\Images\flags\kp.png" />
+		<MauiImage Include="Resources\Images\flags\kr.png" />
+		<MauiImage Include="Resources\Images\flags\kw.png" />
+		<MauiImage Include="Resources\Images\flags\ky.png" />
+		<MauiImage Include="Resources\Images\flags\kz.png" />
+		<MauiImage Include="Resources\Images\flags\la.png" />
+		<MauiImage Include="Resources\Images\flags\lb.png" />
+		<MauiImage Include="Resources\Images\flags\lc.png" />
+		<MauiImage Include="Resources\Images\flags\li.png" />
+		<MauiImage Include="Resources\Images\flags\lk.png" />
+		<MauiImage Include="Resources\Images\flags\lr.png" />
+		<MauiImage Include="Resources\Images\flags\ls.png" />
+		<MauiImage Include="Resources\Images\flags\lt.png" />
+		<MauiImage Include="Resources\Images\flags\lu.png" />
+		<MauiImage Include="Resources\Images\flags\lv.png" />
+		<MauiImage Include="Resources\Images\flags\ly.png" />
+		<MauiImage Include="Resources\Images\flags\ma.png" />
+		<MauiImage Include="Resources\Images\flags\mc.png" />
+		<MauiImage Include="Resources\Images\flags\md.png" />
+		<MauiImage Include="Resources\Images\flags\me.png" />
+		<MauiImage Include="Resources\Images\flags\mg.png" />
+		<MauiImage Include="Resources\Images\flags\mh.png" />
+		<MauiImage Include="Resources\Images\flags\mk.png" />
+		<MauiImage Include="Resources\Images\flags\ml.png" />
+		<MauiImage Include="Resources\Images\flags\mm.png" />
+		<MauiImage Include="Resources\Images\flags\mn.png" />
+		<MauiImage Include="Resources\Images\flags\mo.png" />
+		<MauiImage Include="Resources\Images\flags\mp.png" />
+		<MauiImage Include="Resources\Images\flags\mq.png" />
+		<MauiImage Include="Resources\Images\flags\mr.png" />
+		<MauiImage Include="Resources\Images\flags\ms.png" />
+		<MauiImage Include="Resources\Images\flags\mt.png" />
+		<MauiImage Include="Resources\Images\flags\mu.png" />
+		<MauiImage Include="Resources\Images\flags\mv.png" />
+		<MauiImage Include="Resources\Images\flags\mw.png" />
+		<MauiImage Include="Resources\Images\flags\mx.png" />
+		<MauiImage Include="Resources\Images\flags\my.png" />
+		<MauiImage Include="Resources\Images\flags\mz.png" />
+		<MauiImage Include="Resources\Images\flags\na.png" />
+		<MauiImage Include="Resources\Images\flags\nc.png" />
+		<MauiImage Include="Resources\Images\flags\ne.png" />
+		<MauiImage Include="Resources\Images\flags\nf.png" />
+		<MauiImage Include="Resources\Images\flags\ng.png" />
+		<MauiImage Include="Resources\Images\flags\ni.png" />
+		<MauiImage Include="Resources\Images\flags\nl.png" />
+		<MauiImage Include="Resources\Images\flags\no.png" />
+		<MauiImage Include="Resources\Images\flags\np.png" />
+		<MauiImage Include="Resources\Images\flags\nr.png" />
+		<MauiImage Include="Resources\Images\flags\nu.png" />
+		<MauiImage Include="Resources\Images\flags\nz.png" />
+		<MauiImage Include="Resources\Images\flags\om.png" />
+		<MauiImage Include="Resources\Images\flags\pa.png" />
+		<MauiImage Include="Resources\Images\flags\pe.png" />
+		<MauiImage Include="Resources\Images\flags\pf.png" />
+		<MauiImage Include="Resources\Images\flags\pg.png" />
+		<MauiImage Include="Resources\Images\flags\ph.png" />
+		<MauiImage Include="Resources\Images\flags\pk.png" />
+		<MauiImage Include="Resources\Images\flags\pl.png" />
+		<MauiImage Include="Resources\Images\flags\pm.png" />
+		<MauiImage Include="Resources\Images\flags\pn.png" />
+		<MauiImage Include="Resources\Images\flags\pr.png" />
+		<MauiImage Include="Resources\Images\flags\ps.png" />
+		<MauiImage Include="Resources\Images\flags\pt.png" />
+		<MauiImage Include="Resources\Images\flags\pw.png" />
+		<MauiImage Include="Resources\Images\flags\py.png" />
+		<MauiImage Include="Resources\Images\flags\qa.png" />
+		<MauiImage Include="Resources\Images\flags\re.png" />
+		<MauiImage Include="Resources\Images\flags\ro.png" />
+		<MauiImage Include="Resources\Images\flags\rs.png" />
+		<MauiImage Include="Resources\Images\flags\ru.png" />
+		<MauiImage Include="Resources\Images\flags\rw.png" />
+		<MauiImage Include="Resources\Images\flags\sa.png" />
+		<MauiImage Include="Resources\Images\flags\sb.png" />
+		<MauiImage Include="Resources\Images\flags\sc.png" />
+		<MauiImage Include="Resources\Images\flags\scotland.png" />
+		<MauiImage Include="Resources\Images\flags\sd.png" />
+		<MauiImage Include="Resources\Images\flags\se.png" />
+		<MauiImage Include="Resources\Images\flags\sg.png" />
+		<MauiImage Include="Resources\Images\flags\sh.png" />
+		<MauiImage Include="Resources\Images\flags\si.png" />
+		<MauiImage Include="Resources\Images\flags\sj.png" />
+		<MauiImage Include="Resources\Images\flags\sk.png" />
+		<MauiImage Include="Resources\Images\flags\sl.png" />
+		<MauiImage Include="Resources\Images\flags\sm.png" />
+		<MauiImage Include="Resources\Images\flags\sn.png" />
+		<MauiImage Include="Resources\Images\flags\so.png" />
+		<MauiImage Include="Resources\Images\flags\sr.png" />
+		<MauiImage Include="Resources\Images\flags\st.png" />
+		<MauiImage Include="Resources\Images\flags\sv.png" />
+		<MauiImage Include="Resources\Images\flags\sy.png" />
+		<MauiImage Include="Resources\Images\flags\sz.png" />
+		<MauiImage Include="Resources\Images\flags\tc.png" />
+		<MauiImage Include="Resources\Images\flags\td.png" />
+		<MauiImage Include="Resources\Images\flags\tf.png" />
+		<MauiImage Include="Resources\Images\flags\tg.png" />
+		<MauiImage Include="Resources\Images\flags\th.png" />
+		<MauiImage Include="Resources\Images\flags\tj.png" />
+		<MauiImage Include="Resources\Images\flags\tk.png" />
+		<MauiImage Include="Resources\Images\flags\tl.png" />
+		<MauiImage Include="Resources\Images\flags\tm.png" />
+		<MauiImage Include="Resources\Images\flags\tn.png" />
+		<MauiImage Include="Resources\Images\flags\to.png" />
+		<MauiImage Include="Resources\Images\flags\tr.png" />
+		<MauiImage Include="Resources\Images\flags\tt.png" />
+		<MauiImage Include="Resources\Images\flags\tv.png" />
+		<MauiImage Include="Resources\Images\flags\tw.png" />
+		<MauiImage Include="Resources\Images\flags\tz.png" />
+		<MauiImage Include="Resources\Images\flags\ua.png" />
+		<MauiImage Include="Resources\Images\flags\ug.png" />
+		<MauiImage Include="Resources\Images\flags\um.png" />
+		<MauiImage Include="Resources\Images\flags\us.png" />
+		<MauiImage Include="Resources\Images\flags\uy.png" />
+		<MauiImage Include="Resources\Images\flags\uz.png" />
+		<MauiImage Include="Resources\Images\flags\va.png" />
+		<MauiImage Include="Resources\Images\flags\vc.png" />
+		<MauiImage Include="Resources\Images\flags\ve.png" />
+		<MauiImage Include="Resources\Images\flags\vg.png" />
+		<MauiImage Include="Resources\Images\flags\vi.png" />
+		<MauiImage Include="Resources\Images\flags\vn.png" />
+		<MauiImage Include="Resources\Images\flags\vu.png" />
+		<MauiImage Include="Resources\Images\flags\wales.png" />
+		<MauiImage Include="Resources\Images\flags\wf.png" />
+		<MauiImage Include="Resources\Images\flags\ws.png" />
+		<MauiImage Include="Resources\Images\flags\ye.png" />
+		<MauiImage Include="Resources\Images\flags\yt.png" />
+		<MauiImage Include="Resources\Images\flags\za.png" />
+		<MauiImage Include="Resources\Images\flags\zm.png" />
+		<MauiImage Include="Resources\Images\flags\zw.png" />
+
+		<!-- Splash Screen -->
+		<MauiSplashScreen Include="Resources\Splash\splash.svg" Color="#512BD4" BaseSize="128,128" />
+
+		<!-- Images -->
+		<MauiImage Include="Resources\Images\*" />
+		<MauiImage Update="Resources\Images\dotnet_bot.svg" BaseSize="168,208" />
+
+		<!-- Custom Fonts -->
+		<MauiFont Include="Resources\Fonts\*" />
+
+		<!-- Raw Assets (also remove the "Resources\Raw" prefix) -->
+		<MauiAsset Include="Resources\Raw\**" LogicalName="%(RecursiveDir)%(Filename)%(Extension)" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <None Remove="Resources\Fonts\iconfont.ttf" />
+	  <None Remove="Resources\Fonts\Montserrat-Bold.ttf" />
+	  <None Remove="Resources\Fonts\Montserrat-Medium.ttf" />
+	  <None Remove="Resources\Fonts\Montserrat-Regular.ttf" />
+	  <None Remove="Resources\Fonts\Montserrat-SemiBold.ttf" />
+	  <None Remove="Resources\Fonts\UIFontIcons.ttf" />
+	  <None Remove="Resources\Images\background.png" />
+	  <None Remove="Resources\Images\background1.png" />
+	  <None Remove="Resources\Images\background2.png" />
+	  <None Remove="Resources\Images\flags\ad.png" />
+	  <None Remove="Resources\Images\flags\ae.png" />
+	  <None Remove="Resources\Images\flags\af.png" />
+	  <None Remove="Resources\Images\flags\ag.png" />
+	  <None Remove="Resources\Images\flags\ai.png" />
+	  <None Remove="Resources\Images\flags\al.png" />
+	  <None Remove="Resources\Images\flags\am.png" />
+	  <None Remove="Resources\Images\flags\an.png" />
+	  <None Remove="Resources\Images\flags\ao.png" />
+	  <None Remove="Resources\Images\flags\ar.png" />
+	  <None Remove="Resources\Images\flags\as.png" />
+	  <None Remove="Resources\Images\flags\at.png" />
+	  <None Remove="Resources\Images\flags\au.png" />
+	  <None Remove="Resources\Images\flags\aw.png" />
+	  <None Remove="Resources\Images\flags\ax.png" />
+	  <None Remove="Resources\Images\flags\az.png" />
+	  <None Remove="Resources\Images\flags\ba.png" />
+	  <None Remove="Resources\Images\flags\bb.png" />
+	  <None Remove="Resources\Images\flags\bd.png" />
+	  <None Remove="Resources\Images\flags\be.png" />
+	  <None Remove="Resources\Images\flags\bf.png" />
+	  <None Remove="Resources\Images\flags\bg.png" />
+	  <None Remove="Resources\Images\flags\bh.png" />
+	  <None Remove="Resources\Images\flags\bi.png" />
+	  <None Remove="Resources\Images\flags\bj.png" />
+	  <None Remove="Resources\Images\flags\bm.png" />
+	  <None Remove="Resources\Images\flags\bn.png" />
+	  <None Remove="Resources\Images\flags\bo.png" />
+	  <None Remove="Resources\Images\flags\br.png" />
+	  <None Remove="Resources\Images\flags\bs.png" />
+	  <None Remove="Resources\Images\flags\bt.png" />
+	  <None Remove="Resources\Images\flags\bv.png" />
+	  <None Remove="Resources\Images\flags\bw.png" />
+	  <None Remove="Resources\Images\flags\by.png" />
+	  <None Remove="Resources\Images\flags\bz.png" />
+	  <None Remove="Resources\Images\flags\ca.png" />
+	  <None Remove="Resources\Images\flags\catalonia.png" />
+	  <None Remove="Resources\Images\flags\cc.png" />
+	  <None Remove="Resources\Images\flags\cd.png" />
+	  <None Remove="Resources\Images\flags\cf.png" />
+	  <None Remove="Resources\Images\flags\cg.png" />
+	  <None Remove="Resources\Images\flags\ch.png" />
+	  <None Remove="Resources\Images\flags\ci.png" />
+	  <None Remove="Resources\Images\flags\ck.png" />
+	  <None Remove="Resources\Images\flags\cl.png" />
+	  <None Remove="Resources\Images\flags\cm.png" />
+	  <None Remove="Resources\Images\flags\cn.png" />
+	  <None Remove="Resources\Images\flags\co.png" />
+	  <None Remove="Resources\Images\flags\cr.png" />
+	  <None Remove="Resources\Images\flags\cs.png" />
+	  <None Remove="Resources\Images\flags\cu.png" />
+	  <None Remove="Resources\Images\flags\cv.png" />
+	  <None Remove="Resources\Images\flags\cx.png" />
+	  <None Remove="Resources\Images\flags\cy.png" />
+	  <None Remove="Resources\Images\flags\cz.png" />
+	  <None Remove="Resources\Images\flags\de.png" />
+	  <None Remove="Resources\Images\flags\dj.png" />
+	  <None Remove="Resources\Images\flags\dk.png" />
+	  <None Remove="Resources\Images\flags\dm.png" />
+	  <None Remove="Resources\Images\flags\do.png" />
+	  <None Remove="Resources\Images\flags\dz.png" />
+	  <None Remove="Resources\Images\flags\ec.png" />
+	  <None Remove="Resources\Images\flags\ee.png" />
+	  <None Remove="Resources\Images\flags\eg.png" />
+	  <None Remove="Resources\Images\flags\eh.png" />
+	  <None Remove="Resources\Images\flags\england.png" />
+	  <None Remove="Resources\Images\flags\er.png" />
+	  <None Remove="Resources\Images\flags\es.png" />
+	  <None Remove="Resources\Images\flags\et.png" />
+	  <None Remove="Resources\Images\flags\europeanunion.png" />
+	  <None Remove="Resources\Images\flags\fam.png" />
+	  <None Remove="Resources\Images\flags\fi.png" />
+	  <None Remove="Resources\Images\flags\fj.png" />
+	  <None Remove="Resources\Images\flags\fk.png" />
+	  <None Remove="Resources\Images\flags\fm.png" />
+	  <None Remove="Resources\Images\flags\fo.png" />
+	  <None Remove="Resources\Images\flags\fr.png" />
+	  <None Remove="Resources\Images\flags\ga.png" />
+	  <None Remove="Resources\Images\flags\gb.png" />
+	  <None Remove="Resources\Images\flags\gd.png" />
+	  <None Remove="Resources\Images\flags\ge.png" />
+	  <None Remove="Resources\Images\flags\gf.png" />
+	  <None Remove="Resources\Images\flags\gh.png" />
+	  <None Remove="Resources\Images\flags\gi.png" />
+	  <None Remove="Resources\Images\flags\gl.png" />
+	  <None Remove="Resources\Images\flags\gm.png" />
+	  <None Remove="Resources\Images\flags\gn.png" />
+	  <None Remove="Resources\Images\flags\gp.png" />
+	  <None Remove="Resources\Images\flags\gq.png" />
+	  <None Remove="Resources\Images\flags\gr.png" />
+	  <None Remove="Resources\Images\flags\gs.png" />
+	  <None Remove="Resources\Images\flags\gt.png" />
+	  <None Remove="Resources\Images\flags\gu.png" />
+	  <None Remove="Resources\Images\flags\gw.png" />
+	  <None Remove="Resources\Images\flags\gy.png" />
+	  <None Remove="Resources\Images\flags\hk.png" />
+	  <None Remove="Resources\Images\flags\hm.png" />
+	  <None Remove="Resources\Images\flags\hn.png" />
+	  <None Remove="Resources\Images\flags\hr.png" />
+	  <None Remove="Resources\Images\flags\ht.png" />
+	  <None Remove="Resources\Images\flags\hu.png" />
+	  <None Remove="Resources\Images\flags\id.png" />
+	  <None Remove="Resources\Images\flags\ie.png" />
+	  <None Remove="Resources\Images\flags\il.png" />
+	  <None Remove="Resources\Images\flags\in.png" />
+	  <None Remove="Resources\Images\flags\io.png" />
+	  <None Remove="Resources\Images\flags\iq.png" />
+	  <None Remove="Resources\Images\flags\ir.png" />
+	  <None Remove="Resources\Images\flags\is.png" />
+	  <None Remove="Resources\Images\flags\it.png" />
+	  <None Remove="Resources\Images\flags\jm.png" />
+	  <None Remove="Resources\Images\flags\jo.png" />
+	  <None Remove="Resources\Images\flags\jp.png" />
+	  <None Remove="Resources\Images\flags\ke.png" />
+	  <None Remove="Resources\Images\flags\kg.png" />
+	  <None Remove="Resources\Images\flags\kh.png" />
+	  <None Remove="Resources\Images\flags\ki.png" />
+	  <None Remove="Resources\Images\flags\km.png" />
+	  <None Remove="Resources\Images\flags\kn.png" />
+	  <None Remove="Resources\Images\flags\kp.png" />
+	  <None Remove="Resources\Images\flags\kr.png" />
+	  <None Remove="Resources\Images\flags\kw.png" />
+	  <None Remove="Resources\Images\flags\ky.png" />
+	  <None Remove="Resources\Images\flags\kz.png" />
+	  <None Remove="Resources\Images\flags\la.png" />
+	  <None Remove="Resources\Images\flags\lb.png" />
+	  <None Remove="Resources\Images\flags\lc.png" />
+	  <None Remove="Resources\Images\flags\li.png" />
+	  <None Remove="Resources\Images\flags\lk.png" />
+	  <None Remove="Resources\Images\flags\lr.png" />
+	  <None Remove="Resources\Images\flags\ls.png" />
+	  <None Remove="Resources\Images\flags\lt.png" />
+	  <None Remove="Resources\Images\flags\lu.png" />
+	  <None Remove="Resources\Images\flags\lv.png" />
+	  <None Remove="Resources\Images\flags\ly.png" />
+	  <None Remove="Resources\Images\flags\ma.png" />
+	  <None Remove="Resources\Images\flags\mc.png" />
+	  <None Remove="Resources\Images\flags\md.png" />
+	  <None Remove="Resources\Images\flags\me.png" />
+	  <None Remove="Resources\Images\flags\mg.png" />
+	  <None Remove="Resources\Images\flags\mh.png" />
+	  <None Remove="Resources\Images\flags\mk.png" />
+	  <None Remove="Resources\Images\flags\ml.png" />
+	  <None Remove="Resources\Images\flags\mm.png" />
+	  <None Remove="Resources\Images\flags\mn.png" />
+	  <None Remove="Resources\Images\flags\mo.png" />
+	  <None Remove="Resources\Images\flags\mp.png" />
+	  <None Remove="Resources\Images\flags\mq.png" />
+	  <None Remove="Resources\Images\flags\mr.png" />
+	  <None Remove="Resources\Images\flags\ms.png" />
+	  <None Remove="Resources\Images\flags\mt.png" />
+	  <None Remove="Resources\Images\flags\mu.png" />
+	  <None Remove="Resources\Images\flags\mv.png" />
+	  <None Remove="Resources\Images\flags\mw.png" />
+	  <None Remove="Resources\Images\flags\mx.png" />
+	  <None Remove="Resources\Images\flags\my.png" />
+	  <None Remove="Resources\Images\flags\mz.png" />
+	  <None Remove="Resources\Images\flags\na.png" />
+	  <None Remove="Resources\Images\flags\nc.png" />
+	  <None Remove="Resources\Images\flags\ne.png" />
+	  <None Remove="Resources\Images\flags\nf.png" />
+	  <None Remove="Resources\Images\flags\ng.png" />
+	  <None Remove="Resources\Images\flags\ni.png" />
+	  <None Remove="Resources\Images\flags\nl.png" />
+	  <None Remove="Resources\Images\flags\no.png" />
+	  <None Remove="Resources\Images\flags\np.png" />
+	  <None Remove="Resources\Images\flags\nr.png" />
+	  <None Remove="Resources\Images\flags\nu.png" />
+	  <None Remove="Resources\Images\flags\nz.png" />
+	  <None Remove="Resources\Images\flags\om.png" />
+	  <None Remove="Resources\Images\flags\pa.png" />
+	  <None Remove="Resources\Images\flags\pe.png" />
+	  <None Remove="Resources\Images\flags\pf.png" />
+	  <None Remove="Resources\Images\flags\pg.png" />
+	  <None Remove="Resources\Images\flags\ph.png" />
+	  <None Remove="Resources\Images\flags\pk.png" />
+	  <None Remove="Resources\Images\flags\pl.png" />
+	  <None Remove="Resources\Images\flags\pm.png" />
+	  <None Remove="Resources\Images\flags\pn.png" />
+	  <None Remove="Resources\Images\flags\pr.png" />
+	  <None Remove="Resources\Images\flags\ps.png" />
+	  <None Remove="Resources\Images\flags\pt.png" />
+	  <None Remove="Resources\Images\flags\pw.png" />
+	  <None Remove="Resources\Images\flags\py.png" />
+	  <None Remove="Resources\Images\flags\qa.png" />
+	  <None Remove="Resources\Images\flags\re.png" />
+	  <None Remove="Resources\Images\flags\ro.png" />
+	  <None Remove="Resources\Images\flags\rs.png" />
+	  <None Remove="Resources\Images\flags\ru.png" />
+	  <None Remove="Resources\Images\flags\rw.png" />
+	  <None Remove="Resources\Images\flags\sa.png" />
+	  <None Remove="Resources\Images\flags\sb.png" />
+	  <None Remove="Resources\Images\flags\sc.png" />
+	  <None Remove="Resources\Images\flags\scotland.png" />
+	  <None Remove="Resources\Images\flags\sd.png" />
+	  <None Remove="Resources\Images\flags\se.png" />
+	  <None Remove="Resources\Images\flags\sg.png" />
+	  <None Remove="Resources\Images\flags\sh.png" />
+	  <None Remove="Resources\Images\flags\si.png" />
+	  <None Remove="Resources\Images\flags\sj.png" />
+	  <None Remove="Resources\Images\flags\sk.png" />
+	  <None Remove="Resources\Images\flags\sl.png" />
+	  <None Remove="Resources\Images\flags\sm.png" />
+	  <None Remove="Resources\Images\flags\sn.png" />
+	  <None Remove="Resources\Images\flags\so.png" />
+	  <None Remove="Resources\Images\flags\sr.png" />
+	  <None Remove="Resources\Images\flags\st.png" />
+	  <None Remove="Resources\Images\flags\sv.png" />
+	  <None Remove="Resources\Images\flags\sy.png" />
+	  <None Remove="Resources\Images\flags\sz.png" />
+	  <None Remove="Resources\Images\flags\tc.png" />
+	  <None Remove="Resources\Images\flags\td.png" />
+	  <None Remove="Resources\Images\flags\tf.png" />
+	  <None Remove="Resources\Images\flags\tg.png" />
+	  <None Remove="Resources\Images\flags\th.png" />
+	  <None Remove="Resources\Images\flags\tj.png" />
+	  <None Remove="Resources\Images\flags\tk.png" />
+	  <None Remove="Resources\Images\flags\tl.png" />
+	  <None Remove="Resources\Images\flags\tm.png" />
+	  <None Remove="Resources\Images\flags\tn.png" />
+	  <None Remove="Resources\Images\flags\to.png" />
+	  <None Remove="Resources\Images\flags\tr.png" />
+	  <None Remove="Resources\Images\flags\tt.png" />
+	  <None Remove="Resources\Images\flags\tv.png" />
+	  <None Remove="Resources\Images\flags\tw.png" />
+	  <None Remove="Resources\Images\flags\tz.png" />
+	  <None Remove="Resources\Images\flags\ua.png" />
+	  <None Remove="Resources\Images\flags\ug.png" />
+	  <None Remove="Resources\Images\flags\um.png" />
+	  <None Remove="Resources\Images\flags\us.png" />
+	  <None Remove="Resources\Images\flags\uy.png" />
+	  <None Remove="Resources\Images\flags\uz.png" />
+	  <None Remove="Resources\Images\flags\va.png" />
+	  <None Remove="Resources\Images\flags\vc.png" />
+	  <None Remove="Resources\Images\flags\ve.png" />
+	  <None Remove="Resources\Images\flags\vg.png" />
+	  <None Remove="Resources\Images\flags\vi.png" />
+	  <None Remove="Resources\Images\flags\vn.png" />
+	  <None Remove="Resources\Images\flags\vu.png" />
+	  <None Remove="Resources\Images\flags\wales.png" />
+	  <None Remove="Resources\Images\flags\wf.png" />
+	  <None Remove="Resources\Images\flags\ws.png" />
+	  <None Remove="Resources\Images\flags\ye.png" />
+	  <None Remove="Resources\Images\flags\yt.png" />
+	  <None Remove="Resources\Images\flags\za.png" />
+	  <None Remove="Resources\Images\flags\zm.png" />
+	  <None Remove="Resources\Images\flags\zw.png" />
+	  <None Remove="Resources\Images\logo.ico" />
+	  <None Remove="Resources\Images\sample1.png" />
+	  <None Remove="Resources\Images\sample2.png" />
+	  <None Remove="Resources\Images\sample3.png" />
+	  <None Remove="Resources\Images\sample4.png" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <PackageReference Include="AutoMapper" Version="11.0.1" />
+	  <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="11.0.0" />
+	  <PackageReference Include="FluentValidation" Version="11.0.2" /> 
+	  <PackageReference Include="Prism.DryIoc.Maui" Version="8.1.191-beta" />
+	  <PackageReference Include="Prism.Maui" Version="8.1.191-beta" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <ProjectReference Include="..\AppFramework.Application.Client\AppFramework.Application.Client.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Compile Update="Platforms\iOS\LocaleCulture.cs">
+	    <ExcludeFromCurrentConfiguration>false</ExcludeFromCurrentConfiguration>
+	  </Compile>
+	  <Compile Update="Platforms\Windows\LocaleCulture.cs">
+	    <ExcludeFromCurrentConfiguration>false</ExcludeFromCurrentConfiguration>
+	  </Compile>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <MauiXaml Update="Themes\DarkTheme.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Themes\LightTheme.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Themes\Styles\BorderStyle.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Themes\Styles\ButtonStyle.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Themes\Styles\IconFonts.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Themes\Styles\LabelStyle.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\Dashboard\DashboardView.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\Auditlog\AuditLogView.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\Account\ChangePasswordView.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\DynamicProperty\DynamicPropertyView.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\DynamicProperty\DynamicPropertyDetailsView.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\Edition\EditionView.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\Edition\EditionDetailsView.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\Account\EmailActivationView.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\Account\ForgotPasswordView.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\Language\LanguageDetailsView.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\Language\LanguageViewl.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\Account\MyProfileView.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\Organization\AddRolesView.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\Organization\AddUsersView.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\Organization\OrganizationDetailsView.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\Organization\OrganizationView.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\Account\ProfilePictureView.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\Role\RoleDetailsView.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\Role\RoleView.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\Account\SendTwoFactorCodeView.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\Account\SettingsView.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\LoginView.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\MainView.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\Shared\MessageBoxView.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\SplashView.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\Tenant\TenantDetailsView.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\Tenant\TenantView.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\User\UserDetailsView.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\User\UserView.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	</ItemGroup>
+
+	<ItemGroup Condition="'$(TargetFramework)' == 'net6.0-windows10.0.19041.0'">
+	  <PackageReference Include="LiveChartsCore.SkiaSharpView.WinUI">
+	    <Version>2.0.0-beta.240</Version>
+	  </PackageReference>
+	</ItemGroup>
+
+</Project>

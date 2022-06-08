@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView
+    x:Class="AppFramework.Views.TenantView"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:extensions="clr-namespace:AppFramework.Extensions.MarkupExtensions"
+    xmlns:perm="clr-namespace:AppFramework;assembly=AppFramework">
+    <Grid>
+        <CollectionView ItemsSource="{Binding GridModelList}">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Grid>
+                        <Frame HorizontalOptions="FillAndExpand">
+                            <Grid ColumnDefinitions="auto,0.8*" RowDefinitions="0.3*,0.3*,0.3*">
+                                <Label Text="{extensions:Translate TenancyName}" />
+                                <Label
+                                    Grid.Column="1"
+                                    Margin="5,0"
+                                    Text="{Binding TenancyName}" />
+
+                                <Label Grid.Row="1" Text="{extensions:Translate Name}" />
+                                <Label
+                                    Grid.Row="1"
+                                    Grid.Column="1"
+                                    Margin="5,0"
+                                    Text="{Binding Name}" />
+
+                                <Label Grid.Row="2" Text="{extensions:Translate Edition}" />
+                                <Label
+                                    Grid.Row="2"
+                                    Grid.Column="1"
+                                    Margin="5,0"
+                                    Text="{Binding EditionDisplayName}" />
+                            </Grid>
+                        </Frame>
+                    </Grid>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+
+        <Button
+            Margin="0,0,10,10"
+            Command="{Binding AddCommand}"
+            HorizontalOptions="End"
+            IsVisible="{extensions:HasPermission Text={x:Static perm:Permkeys.TenantCreate}}"
+            Style="{StaticResource AddButtonStyle}"
+            VerticalOptions="End" />
+    </Grid>
+</ContentView>

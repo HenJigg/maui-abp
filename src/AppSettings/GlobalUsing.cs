@@ -1,0 +1,17 @@
+﻿global using Abp.Application.Services.Dto;
+global using AppFramework;
+global using AppFramework.Models;
+global using AppFramework.ApiClient;
+global using AppFramework.Core;
+global using AppFramework.Models;
+global using AppFramework.Services;
+global using AppFramework.Services.Account;
+global using Prism;
+global using Prism.Commands;
+global using Prism.Ioc;
+global using Prism.Navigation;
+global using Prism.Regions.Navigation;
+global using System;
+global using System.Collections.ObjectModel;
+global using System.Threading.Tasks;
+global using FluentValidation; 

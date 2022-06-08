@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="AppFramework.Views.EditionDetailsView"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:extensions="clr-namespace:AppFramework.Extensions.MarkupExtensions;assembly=AppFramework"
+    Title="EditionDetailsView">
+    <Grid
+        Padding="15"
+        BackgroundColor="{DynamicResource GrayShadowColor}"
+        RowDefinitions="auto,auto">
+
+        <ScrollView>
+            <StackLayout>
+                <!--  版本名称  -->
+                <Label Text="{extensions:Translate EditionName}" />
+                <Entry Text="{Binding Model.DisplayName, Mode=TwoWay}" />
+
+                <!--  是否付费  -->
+                <Label Text="{extensions:Translate SubscriptionPrice}" />
+                <StackLayout Orientation="Horizontal">
+                    <RadioButton Content="{extensions:Translate Free}" IsChecked="True" />
+                    <RadioButton Content="{extensions:Translate Paid}" IsChecked="{Binding IsPaid}" />
+                </StackLayout>
+
+                <StackLayout IsVisible="{Binding IsPaid}">
+
+                    <!--  每天定价  -->
+                    <Label Text="{extensions:Translate DailyPrice}" />
+                    <Entry Text="{Binding Model.DailyPrice, Mode=TwoWay}" />
+
+                    <!--  每周定价  -->
+                    <Label Text="{extensions:Translate WeeklyPrice}" />
+                    <Entry Text="{Binding Model.WeeklyPrice, Mode=TwoWay}" />
+
+                    <!--  每月定价  -->
+                    <Label Text="{extensions:Translate MonthlyPrice}" />
+                    <Entry Text="{Binding Model.MonthlyPrice, Mode=TwoWay}" />
+
+                    <!--  每年定价  -->
+                    <Label Text="{extensions:Translate AnnualPrice}" />
+                    <Entry Text="{Binding Model.AnnualPrice, Mode=TwoWay}" />
+
+                    <!--  是否试用  -->
+                    <CheckBox IsChecked="{Binding IsTrialActive}" />
+                    <!--  Text="{extensions:Translate IsTrialActive}" />  -->
+                    <StackLayout IsVisible="{Binding IsTrialActive}">
+                        <Label Text="{extensions:Translate TrialDayCount}" />
+                        <!--<NumericUpDown
+                            Minimum="0"
+                            StepValue="1"
+                            Value="{Binding Model.TrialDayCount}" />-->
+                    </StackLayout>
+
+                    <!--  订阅到期后  -->
+                    <CheckBox IsChecked="{Binding IsWaitingDayAfter}" />
+                    <!--  Text="{extensions:Translate WaitAfterSubscriptionExpireDate}" />  -->
+                    <StackLayout IsVisible="{Binding IsWaitingDayAfter}">
+                        <Label Text="{extensions:Translate WaitingDayAfterExpire}" />
+                        <!--<NumericUpDown
+                            Minimum="0"
+                            StepValue="1"
+                            Value="{Binding Model.WaitingDayAfterExpire}" />-->
+                    </StackLayout>
+
+                    <!--  订阅到期后怎么做？  -->
+                    <Label Text="{extensions:Translate WhatWillDoneAfterSubscriptionExpiry}" />
+                    <StackLayout Orientation="Horizontal">
+                        <RadioButton Content="{extensions:Translate DeactiveTenant}" />
+                        <RadioButton Content="{extensions:Translate AssignToAnotherEdition}" IsChecked="{Binding IsAssignToAnotherEdition}" />
+                    </StackLayout>
+
+                    <!--  指定版本  -->
+                    <Picker
+                        Title="{extensions:Translate Edition}"
+                        IsVisible="{Binding IsAssignToAnotherEdition}"
+                        ItemDisplayBinding="{Binding DisplayText}"
+                        ItemsSource="{Binding Editions}"
+                        SelectedItem="{Binding SelectedEdition}" />
+                </StackLayout>
+
+                <!--  功能列表  -->
+                <Label Text="{extensions:Translate Features}" />
+                <!--<TreeView
+                    ChildPropertyName="Items"
+                    ItemsSource="{Binding Features}"
+                    SelectionBackgroundColor="Transparent">
+                    <TreeView.ItemTemplate>
+                        <DataTemplate>
+                            <StackLayout Orientation="Horizontal">
+                                <CheckBox
+                                    IsChecked="{Binding IsChecked, Mode=TwoWay}"
+                                    VerticalOptions="Center" />
+                                <Label
+                                    Text="{Binding DisplayName}"
+                                    VerticalOptions="Center" />
+                            </StackLayout>
+                        </DataTemplate>
+                    </TreeView.ItemTemplate>
+                </TreeView>-->
+            </StackLayout>
+        </ScrollView>
+
+        <!--  删除/保存  -->
+        <StackLayout Grid.Row="1">
+            <Button
+                Command="{Binding GoBackCommand}"
+                HorizontalOptions="Fill"
+                Text="{extensions:Translate Cancel}" />
+
+            <Button HorizontalOptions="Fill" Text="{extensions:Translate Delete}" />
+
+            <Button
+                Command="{Binding SaveCommand}"
+                HorizontalOptions="Fill"
+                Text="{extensions:Translate Save}" />
+        </StackLayout>
+    </Grid>
+</ContentPage>

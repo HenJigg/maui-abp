@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="AppFramework.Views.DynamicPropertyDetailsView"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:extensions="clr-namespace:AppFramework.Extensions.MarkupExtensions;assembly=AppFramework"
+    xmlns:list="clr-namespace:System.Collections.Generic;assembly=netstandard"
+    Title="DynamicPropertyDetailsView">
+    <Grid Padding="15" RowDefinitions="*,auto">
+        <StackLayout Padding="10">
+            <!--  添加新的动态属性  -->
+            <Label Text="{extensions:Translate AddNewDynamicProperty}" />
+
+            <!--  属性名称  -->
+            <Label Text="{extensions:Translate PropertyName}" />
+            <Entry Text="{Binding Model.PropertyName}" />
+
+            <!--  显示名称  -->
+            <Label Text="{extensions:Translate DisplayName}" />
+            <Entry Text="{Binding Model.DisplayName}" />
+
+            <!--  输入类型  -->
+            <Label Text="{extensions:Translate DisplayName}" />
+            <!--<ComboBox Text="{Binding Model.InputType}">
+                <ComboBox.ComboBoxSource>
+                    <list:List x:TypeArguments="x:String">
+                        <x:String>SINGLE_LINE_STRING</x:String>
+                        <x:String>COMBOBOX</x:String>
+                        <x:String>CHECKBOX</x:String>
+                        <x:String>MULTISELECTCOMBOBOX</x:String>
+                    </list:List>
+                </ComboBox.ComboBoxSource>
+            </ComboBox>-->
+
+            <!--  权限  -->
+            <Label Text="{extensions:Translate Permissions}" />
+            <Picker Title="{extensions:Translate SelectPermissions}" SelectedItem="{Binding Model.Permission}" />
+        </StackLayout>
+
+        <StackLayout Grid.Row="1">
+            <Button
+                Command="{Binding GoBackCommand}"
+                HorizontalOptions="Fill"
+                Text="{extensions:Translate Cancel}" />
+            <Button
+                Command="{Binding SaveCommand}"
+                HorizontalOptions="Fill"
+                Text="{extensions:Translate Save}" />
+        </StackLayout>
+    </Grid>
+</ContentPage>
